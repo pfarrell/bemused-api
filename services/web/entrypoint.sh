@@ -11,6 +11,12 @@ then
   echo "PostgreSQL started"
 fi
 
-python manage.py create_db
+
+if [ "$FLASK_DEBUG" = "1" ]
+then
+  echo "Creating database tables..."
+  python manage.py create_db
+  echo "Tables created"
+fi
 
 exec "$@"
